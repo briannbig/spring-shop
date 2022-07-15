@@ -6,7 +6,11 @@
 
   <groupId>com.briannbig</groupId>
   <artifactId>e-shop-microservices</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>products</module>
+  </modules>
 
   <name>e-shop-microservices</name>
   <!-- FIXME change it to the project's website -->
