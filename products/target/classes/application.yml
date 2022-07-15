@@ -1,0 +1,19 @@
+server:
+  port:8080
+spring:
+  application:
+    name: products
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5430/products
+    username: postgres
+    password: r00t
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
