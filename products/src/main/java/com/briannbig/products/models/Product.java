@@ -23,7 +23,7 @@ public class Product {
     )
     private long id;
 
-    @ManyToMany
+    @ManyToOne
     private Category category;
 
     @Column
