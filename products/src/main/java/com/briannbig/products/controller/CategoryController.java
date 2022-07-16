@@ -1,7 +1,9 @@
 package com.briannbig.products.controller;
 
 import com.briannbig.products.domain.CategoryService;
+import com.briannbig.products.domain.PersonalizationService;
 import com.briannbig.products.models.Category;
+import com.briannbig.products.models.InterestsList;
 import com.briannbig.products.models.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private final CategoryService service;
+    @Autowired
+    private final PersonalizationService personalizationService;
 
     @GetMapping
     public List<Category> all(){
@@ -49,6 +53,19 @@ public class CategoryController {
     @DeleteMapping
     public void delete(@RequestParam long id){
         service.remove(id);
+    }
+
+    @GetMapping("/interests/{customerId}")
+    public InterestsList interestedCategories(@PathVariable long customerId){
+        return personalizationService.findInterestsList(customerId);
+    }
+
+    @PostMapping("/interests/{customerId}")
+    public InterestsList addInterestedCategory(
+            @PathVariable long customerId,
+            @RequestBody Category category
+            ){
+        return personalizationService.addInterestListItem(customerId, category);
     }
 
 }
