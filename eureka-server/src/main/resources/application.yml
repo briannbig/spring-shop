@@ -8,6 +8,8 @@ server:
   port: 8761
 
 eureka:
+  server:
+    wait-time-in-ms-sync-empty: 0
   client:
     fetch-registry: false
     register-with-eureka: false
