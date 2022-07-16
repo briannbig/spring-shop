@@ -2,6 +2,7 @@ package com.briannbig.products.domain;
 
 import com.briannbig.products.repository.ProductRepository;
 import com.briannbig.products.models.Product;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,12 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductsService {
     private final ProductRepository repository;
-
-    public ProductsService(ProductRepository repository) {
-        this.repository = repository;
-    }
 
     public List<Product> fetch(){
         return repository.findAll();

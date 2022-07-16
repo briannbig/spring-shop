@@ -3,6 +3,7 @@ package com.briannbig.products.controller;
 import com.briannbig.products.domain.CategoryService;
 import com.briannbig.products.models.Category;
 import com.briannbig.products.models.Product;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/categories")
+@AllArgsConstructor
 public class CategoryController {
     @Autowired
     private final CategoryService service;
-
-    public CategoryController(CategoryService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<Category> all(){

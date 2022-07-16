@@ -3,6 +3,7 @@ package com.briannbig.products.domain;
 import com.briannbig.products.models.Category;
 import com.briannbig.products.models.Product;
 import com.briannbig.products.repository.CategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,15 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CategoryService {
     private final CategoryRepository repository;
     private final ProductsService productsService;
-
-    public CategoryService(CategoryRepository repository,
-                           ProductsService productsService) {
-        this.repository = repository;
-        this.productsService = productsService;
-    }
 
     public List<Category> fetch(){
         return repository.findAll();
