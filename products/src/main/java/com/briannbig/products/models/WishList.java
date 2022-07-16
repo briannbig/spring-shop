@@ -28,6 +28,6 @@ public class WishList {
     @Column(unique = true, nullable = false)
     private long customerId;
 
-    @OneToMany
+    @ManyToMany
     private List<Product> products;
 }

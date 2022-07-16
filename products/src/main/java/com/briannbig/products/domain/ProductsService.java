@@ -1,5 +1,6 @@
 package com.briannbig.products.domain;
 
+import com.briannbig.products.models.Category;
 import com.briannbig.products.repository.ProductRepository;
 import com.briannbig.products.models.Product;
 import lombok.AllArgsConstructor;

@@ -26,6 +26,6 @@ public class InterestsList {
     @Column(unique = true, nullable = false)
     private long customerId;
 
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
 }
