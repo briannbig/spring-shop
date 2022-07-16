@@ -45,12 +45,12 @@ public class ProductController {
         productsService.remove(id);
     }
 
-    @GetMapping("/interests/{customerId}")
+    @GetMapping("/wishlist/{customerId}")
     public WishList wishList(@PathVariable long customerId){
         return personalizationService.findWishlist(customerId);
     }
 
-    @PostMapping("/interests/{customerId}")
+    @PostMapping("/wishlist/{customerId}")
     public WishList addWishlistItem(
             @PathVariable long customerId,
             @RequestBody Product product
