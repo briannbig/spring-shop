@@ -11,6 +11,7 @@
   <modules>
     <module>products</module>
       <module>customers</module>
+      <module>sales</module>
   </modules>
 
   <name>e-shop-microservices</name>
