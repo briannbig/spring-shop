@@ -7,7 +7,9 @@ import com.briannbig.products.models.WishList;
 import com.briannbig.products.repository.InterestsRepository;
 import com.briannbig.products.repository.WishlistRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
 public class PersonalizationService {
     private final WishlistRepository wishlistRepository;
     private final InterestsRepository interestsRepository;
+    private final RestTemplate restTemplate;
 
     public WishList findWishlist(long customerId){
         return wishlistRepository.findByCustomerId(customerId);
@@ -27,12 +30,15 @@ public class PersonalizationService {
             wishList.getProducts().add(product);
             return wishlistRepository.save(wishList);
         }
-        //todo check if customer exists before proceeding
-        wishList = WishList.builder()
-                .customerId(customerId)
-                .products(List.of(product))
-                .build();
-        return wishlistRepository.save(wishList);
+        if (customerExists(customerId)){
+            wishList = WishList.builder()
+                    .customerId(customerId)
+                    .products(List.of(product))
+                    .build();
+            return wishlistRepository.save(wishList);
+        }
+        return WishList.builder().build();
+
     }
 
     public InterestsList findInterestsList(long customerId){
@@ -45,17 +51,24 @@ public class PersonalizationService {
             list.getCategories().add(category);
             return interestsRepository.save(list);
         }
-        // todo check if customer exists before proceeding
-        list = InterestsList.builder()
-                .customerId(customerId)
-                .categories(List.of(category))
-                .build();
-        return interestsRepository.save(list);
+        if (customerExists(customerId)) {
+            list = InterestsList.builder()
+                    .customerId(customerId)
+                    .categories(List.of(category))
+                    .build();
+            return interestsRepository.save(list);
+        }
+        return InterestsList.builder().build();
     }
 
     private boolean customerExists(long customerId){
-        //todo check if customer exists
-        return true;
+        Customer customer =restTemplate.getForObject(
+                "http://localhost:8081/api/v1/customers/{id}",
+                Customer.class,
+                customerId
+        );
+        System.out.println("Check Customer-------------------------: " +customer);
+        return customer != null;
     }
 
 }
