@@ -13,6 +13,7 @@
       <module>customers</module>
       <module>sales</module>
       <module>eureka-server</module>
+      <module>api-gateway</module>
   </modules>
 
   <name>e-shop-microservices</name>
