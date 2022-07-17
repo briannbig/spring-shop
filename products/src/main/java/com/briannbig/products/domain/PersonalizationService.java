@@ -30,6 +30,7 @@ public class PersonalizationService {
             wishList.getProducts().add(product);
             return wishlistRepository.save(wishList);
         }
+        //todo: replace rest template
         if (customerExists(customerId)){
             wishList = WishList.builder()
                     .customerId(customerId)
