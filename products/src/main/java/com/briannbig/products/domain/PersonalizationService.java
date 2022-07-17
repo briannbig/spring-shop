@@ -64,7 +64,7 @@ public class PersonalizationService {
 
     private boolean customerExists(long customerId){
         Customer customer =restTemplate.getForObject(
-                "http://localhost:8081/api/v1/customers/{id}",
+                "http://localhost:8083/api/v1/customers/{id}",
                 Customer.class,
                 customerId
         );
