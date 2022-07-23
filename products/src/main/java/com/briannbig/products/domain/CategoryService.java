@@ -29,12 +29,8 @@ public class CategoryService {
         return repository.findByName(name);
     }
 
-    public Category add(String name, String description){
-        return repository.save(Category.builder()
-                .name(name)
-                .description(description)
-                .build()
-        );
+    public Category add(Category category){
+        return repository.save(category);
     }
     @Transactional
     public Category update(long id, String name, String description){

@@ -33,8 +33,8 @@ public class ProductController {
         return productsService.fetch(name);
     }
     @PostMapping()
-    public Product add(@RequestParam String name, @RequestParam double price ){
-        return productsService.add(name, price);
+    public Product add(@RequestBody Product product){
+        return productsService.add(product);
     }
     @PutMapping()
     public Product update(@RequestParam long id, @RequestParam String name, @RequestParam double price ){

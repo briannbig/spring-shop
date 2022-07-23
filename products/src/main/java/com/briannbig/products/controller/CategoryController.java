@@ -41,8 +41,8 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Category add(@RequestParam String name, @RequestParam String description){
-        return service.add(name, description);
+    public Category add(@RequestBody Category category){
+        return service.add(category);
     }
 
     @PutMapping

@@ -27,11 +27,8 @@ public class ProductsService {
         return repository.findByName(name);
     }
 
-    public Product add(String name, double price){
-        return repository.save(Product.builder()
-                .name(name)
-                .price(price)
-                .build());
+    public Product add(Product product){
+        return repository.save(product);
     }
 
     @Transactional
