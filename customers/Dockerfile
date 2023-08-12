@@ -1,11 +1,8 @@
 FROM openjdk:17-slim
 
-RUN  mkdir -p /opt/spring-shop/customers
 
-COPY ./target/customers-1.0-SNAPSHOT.jar /opt/spring-shop/customers/
-
-WORKDIR /opt/spring-shop/customers
+ADD ./target/customers-*.jar app.jar
 
 EXPOSE 9000 0
 
-ENTRYPOINT ["java", "-jar", "customers-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
