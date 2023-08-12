@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    container_name: spring-shop-gateway
+    restart: on-failure
+    build: ./api-gateway
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eureka
+
+  eureka:
+    container_name: spring-shop-eureka-server
+    restart: on-failure
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+
+  customers:
+    container_name: spring-shop-customers
+    restart: on-failure
+    build: ./customers
+    depends_on:
+      - database
+      - api-gateway
+
+  products:
+    container_name: spring-shop-products
+    restart: on-failure
+    build: ./products
+    depends_on:
+      - database
+      - api-gateway
+
+  database:
+    image: 'postgres:alpine'
+    container_name: spring-shop-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "spring-shop"
+      POSTGRES_PASSWORD: "5PR1NG-s#0p"
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./docker-db-init.sql:/docker-entrypoint-initdb.d/init.sql

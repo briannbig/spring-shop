@@ -5,9 +5,9 @@ spring:
     name: customers
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5430/customers
-    username: postgres
-    password: r00t
+    url: jdbc:postgresql://localhost:5433/products
+    username: spring-shop
+    password: 5PR1NG-s#0p
     driver-class-name: org.postgresql.Driver
   zipkin:
     base-url: http://localhost:9411
